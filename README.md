@@ -44,6 +44,7 @@ sudo systemctl daemon-reload && sudo systemctl restart docker
 ```
 $ git clone https://github.com/cashwarden/docker.git cashwarden-docker
 $ cd cashwarden-docker
+$ git submodule init
 $ git submodule update --recursive --remote
 $ cp .env-dist .env
 $ docker-compose up -d
