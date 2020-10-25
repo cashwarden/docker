@@ -58,7 +58,7 @@ $ docker exec api php yii generate/key true
 
 根据终端输出的结果，手动修改 `.env` 文件中的 `COOKIE_VALIDATION_KEY` 和 `JWT_SECRET` 值。
 
-⚠️：另外要修改 `.env` 中 `APP_URL` 的值，使用 Telegram 记账的时候要用到。
+⚠️ 另外要修改 `.env` 中 `APP_URL` 的值，使用 Telegram 记账的时候要用到。`APP_URL=https://域名/api` ，必须使用 HTTPS 协议。
 
 然后再次重启 Docker
 
