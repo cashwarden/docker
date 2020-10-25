@@ -63,3 +63,9 @@ $ docker exec api php yii generate/key true
 ```
 $ docker-compose stop && docker-compose up -d
 ```
+
+### 使用 Telegram 记账功能
+
+```
+$ docker exec api php yii init/telegram
+```
