@@ -66,11 +66,22 @@ $ docker exec api php yii generate/key true
 
 然后再次重启 Docker
 
-```
+```shell
 $ docker-compose stop && docker-compose up -d
 ```
 
-访问 <http://localhost> 就可以使用了。
+访问 <http://localhost> 就可以使用了。A
+
+
+### 重新 build
+
+更新代码之后可能需要重新 build
+
+```shell
+$ docker-compose build --no-cache web api
+// 或者
+$ docker-compose up --build -d web api
+```
 
 ### 使用 Telegram 记账功能
 
