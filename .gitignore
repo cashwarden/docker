@@ -3,3 +3,5 @@
 # System Files
 .DS_Store
 Thumbs.db
+api
+web
