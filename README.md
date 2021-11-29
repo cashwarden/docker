@@ -41,20 +41,20 @@ sudo systemctl daemon-reload && sudo systemctl restart docker
 
 ### 准备代码
 
-```
-$ git clone https://github.com/cashwarden/docker.git cashwarden-docker
-$ cd cashwarden-docker
-$ git clone https://github.com/cashwarden/web.git web
-$ git clone -b gh-pages https://github.com/cashwarden/web.git web/dist
-$ git clone https://github.com/cashwarden/api.git api
-$ cp .env-dist .env
-$ docker-compose up -d
+```shell
+git clone https://github.com/cashwarden/docker.git cashwarden-docker
+cd cashwarden-docker
+git clone https://github.com/cashwarden/web.git web
+git clone -b gh-pages https://github.com/cashwarden/web.git web/dist
+git clone https://github.com/cashwarden/api.git api
+cp .env-dist .env
+docker-compose up -d
 ```
 
 ### 修改配置文件
 
-```
-$ docker exec api php yii generate/key true
+```shell
+docker exec api php yii generate/key true
 ```
 
 根据终端输出的结果，手动修改 `.env` 文件中的 `COOKIE_VALIDATION_KEY` 和 `JWT_SECRET` 值。
@@ -68,7 +68,7 @@ $ docker exec api php yii generate/key true
 然后再次重启 Docker
 
 ```shell
-$ docker-compose stop && docker-compose up -d
+docker-compose stop && docker-compose up -d
 ```
 
 访问 <http://localhost:81> 就可以使用了。
@@ -119,9 +119,9 @@ sudo certbot renew --dry-run
 更新代码之后可能需要重新 build
 
 ```shell
-$ docker-compose build --no-cache web api
+docker-compose build --no-cache web api
 // 或者
-$ docker-compose up --build -d web api
+docker-compose up --build -d web api
 ```
 
 ### 修改配置文件
