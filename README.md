@@ -71,8 +71,48 @@ $ docker exec api php yii generate/key true
 $ docker-compose stop && docker-compose up -d
 ```
 
-访问 <http://localhost> 就可以使用了。A
+访问 <http://localhost:81> 就可以使用了。
 
+### HTTPS
+
+提供一个方案（Ubuntu 并且已经有 Nginx），可以使用 [Certbot 安装](https://certbot.eff.org/lets-encrypt/ubuntufocal-nginx) HTTPS:
+
+```shell
+sudo apt install snapd
+sudo snap install core; sudo snap refresh core
+sudo snap install --classic certbot
+sudo ln -s /snap/bin/certbot /usr/bin/certbot
+```
+
+配置 nginx 代理：
+
+```shell
+vim /etc/nginx/sites-available/cashwarden
+```
+
+```
+server {
+    charset utf-8;
+    client_max_body_size 128M; ## listen for ipv4
+    server_name cashwarden.com www.cashwarden.com;
+
+    location / {
+        proxy_pass http://localhost:81;
+    }
+}
+```
+
+全自动安装：
+
+```shell
+sudo certbot --nginx -d cashwarden.com -d www.cashwarden.com
+```
+
+配置定时任务：
+
+```shell
+sudo certbot renew --dry-run
+```
 
 ### 重新 build
 
@@ -84,8 +124,16 @@ $ docker-compose build --no-cache web api
 $ docker-compose up --build -d web api
 ```
 
+### 修改配置文件
+
+修改 `.env` 文件之后要执行：
+
+```shell
+docker-compose up -d
+```
+
 ### 使用 Telegram 记账功能
 
-```
-$ docker exec api php yii init/telegram
+```shell
+docker exec api php yii init/telegram "/telegram/hook"
 ```

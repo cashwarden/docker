@@ -17,8 +17,8 @@ services:
       - api
       - web
     ports:
-      - 80:80
-      - 443:443
+      - 81:80
+      - 444:443
 
   api:
     container_name: api
